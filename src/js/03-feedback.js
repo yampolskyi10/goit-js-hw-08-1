@@ -13,13 +13,18 @@ function saveFormData() {
 }
 
 function loadFormData() {
-    const savedData = localStorage.getItem('feedback-form-state');
-    if (savedData) {
-        const formData = JSON.parse(savedData);
-        emailInput.value = formData.email;
-        messageInput.value = formData.message;
+    try {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+        if (savedData) {
+            const formData = JSON.parse(savedData);
+            emailInput.value = formData.email;
+            messageInput.value = formData.message;
+        }
+    } catch (error) {
+        console.error('Помилка при завантаженні даних із локального сховища:', error);
     }
 }
+
 
 function handleSubmit(event) {
     event.preventDefault();
