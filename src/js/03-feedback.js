@@ -3,13 +3,16 @@ import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
 const emailInput = form.querySelector('input[name="email"]');
 const messageInput = form.querySelector('textarea[name="message"]');
+const STORAGE_KEY = "feedback-form-state";
+
+
 
 function saveFormData() {
     const formData = {
         email: emailInput.value,
         message: messageInput.value,
     };
-    localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
 function loadFormData() {
@@ -21,10 +24,11 @@ function loadFormData() {
             messageInput.value = formData.message;
         }
     } catch (error) {
-        console.error('Помилка при завантаженні даних із локального сховища:', error);
+        console.error('Помилка при завантаженні даних :', error);
     }
 }
 
+const STORAGE_KEY = 'feedback-form-state'; 
 
 function handleSubmit(event) {
     event.preventDefault();
