@@ -28,7 +28,7 @@ function loadFormData() {
     }
 }
 
-const STORAGE_KEY = 'feedback-form-state'; 
+
 
 function handleSubmit(event) {
     event.preventDefault();
